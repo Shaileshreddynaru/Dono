@@ -26,7 +26,7 @@ import jakarta.validation.Valid;
 
 
 @RestController
-@RequestMapping(value= {"/"})
+@RequestMapping(value= {"/api"})
 public class MainController {
     
 	@Autowired

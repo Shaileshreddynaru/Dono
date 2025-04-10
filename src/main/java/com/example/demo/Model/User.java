@@ -3,6 +3,7 @@ package com.example.demo.Model;
 
 import org.springframework.stereotype.Component;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,6 +20,7 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int loginid;
+	@Column(unique=true , nullable=false)
 	private String username;
 	private String password;
 	public int getLoginid() {
