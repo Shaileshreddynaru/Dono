@@ -3,6 +3,7 @@ package com.example.demo.conf;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -33,7 +34,8 @@ import com.example.demo.Services.MyUserDetailsService;
 @EnableWebSecurity
 public class Config {
 
-	
+	@Value("${frontend.url}")
+	private String frontendUrl;
 	@Autowired
 	public UserDetailsService userDetailsService;
 	  @Autowired
@@ -45,7 +47,7 @@ public class Config {
 	@Bean
 	CorsConfigurationSource corsConfigurationSource() {
 	    CorsConfiguration configuration = new CorsConfiguration();
-	    configuration.setAllowedOrigins(List.of("http://localhost:5173"));
+	    configuration.setAllowedOrigins(List.of(frontendUrl));
 	    configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));
 	    configuration.setAllowCredentials(true);
 	    configuration.addAllowedHeader("*");
@@ -55,7 +57,7 @@ public class Config {
 	}
     
     
-	@SuppressWarnings("removal")
+
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 	    return httpSecurity
